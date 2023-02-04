@@ -1,24 +1,11 @@
-import React from 'react';
+import React, {type FC} from 'react';
 import styles from './App.module.scss';
+import AuthPage from './components/AuthPage/AuthPage';
 
-function App() {
-	return (
-		<div className='App'>
-			<header className='App-header'>
-				<p>
-          Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className={styles.appLink}
-					href='https://reactjs.org'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-          Learn React
-				</a>
-			</header>
-		</div>
-	);
-}
+const App: FC = () => (
+	<div className={styles.app}>
+		<AuthPage />
+	</div>
+);
 
 export default App;

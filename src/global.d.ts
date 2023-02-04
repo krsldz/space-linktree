@@ -3,3 +3,8 @@ declare module '*.scss' {
 	const classNames: ClassNames;
 	export = classNames;
 }
+
+declare module '*.png' {
+	const value: never;
+	export default value;
+}
