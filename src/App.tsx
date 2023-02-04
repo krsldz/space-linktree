@@ -1,10 +1,10 @@
 import React, {type FC} from 'react';
 import styles from './App.module.scss';
-import MainPage from './MainPage';
+import AuthPage from './components/AuthPage/AuthPage';
 
 const App: FC = () => (
 	<div className={styles.app}>
-		<MainPage />
+		<AuthPage />
 	</div>
 );
 

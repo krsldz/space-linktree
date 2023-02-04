@@ -1,4 +1,17 @@
+body {
+  margin: 0;
+  background-color: black;
+}
+
 .app {
-  background: url(images/space1.png) no-repeat center center fixed;
+  background-image: url(images/nasa.png);
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-color: #091521;
+  background-position: center;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem
 }
