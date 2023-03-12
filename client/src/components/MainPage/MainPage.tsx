@@ -1,12 +1,10 @@
-import React, {type FC, memo} from 'react';
-import email from '../../icons/email.png';
+import React, { type FC, memo } from 'react';
+import BasicInfo from '../BasicInfo/BasicInfo';
 import styles from './MainPage.module.scss';
 
 const MainPage: FC = () => (
-	<div className={styles.wrap}>
-		<div className={styles.cardWrap}>
-			<div className={styles.input}><img className={styles.icon} src={email}/>kris.eldzarova@gmail.com</div>
-		</div>
-	</div>
+  <div className={styles.wrap}>
+    <BasicInfo />
+  </div>
 );
 export default memo(MainPage);

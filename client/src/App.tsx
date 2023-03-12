@@ -1,11 +1,11 @@
-import React, {type FC} from 'react';
+import React, { FC } from 'react';
 import styles from './App.module.scss';
-import AuthPage from './components/AuthPage/AuthPage';
+import MainPage from './components/MainPage/MainPage';
 
 const App: FC = () => (
-	<div className={styles.app}>
-		<AuthPage />
-	</div>
+  <div className={styles.app}>
+    <MainPage />
+  </div>
 );
 
 export default App;

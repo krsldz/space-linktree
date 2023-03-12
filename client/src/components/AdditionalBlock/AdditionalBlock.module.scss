@@ -1,0 +1,13 @@
+.wrap {
+  height: 70px;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(215, 215, 215, 0.5);
+  backdrop-filter: blur(3px);
+  padding: 0 10px;
+  margin: 15px 0;
+}
