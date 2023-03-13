@@ -1,0 +1,12 @@
+.wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.buttonBlock {
+  display: flex;
+  button+button {
+    margin-left: 10px;
+  }
+}

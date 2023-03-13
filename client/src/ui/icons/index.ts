@@ -1,9 +1,11 @@
+export { ReactComponent as Behance } from './behance.svg';
 export { ReactComponent as Email } from './email.svg';
 export { ReactComponent as Facebook } from './facebook.svg';
 export { ReactComponent as Github } from './github.svg';
 export { ReactComponent as Instagram } from './instagram.svg';
 export { ReactComponent as Link } from './link.svg';
 export { ReactComponent as Linkedin } from './linkedin.svg';
+export { ReactComponent as Settings } from './settings.svg';
 export { ReactComponent as Spotify } from './spotify.svg';
 export { ReactComponent as Telegram } from './telegram.svg';
 export { ReactComponent as Tiktok } from './tiktok.svg';
