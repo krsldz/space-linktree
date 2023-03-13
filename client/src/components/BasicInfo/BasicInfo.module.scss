@@ -7,9 +7,9 @@
   flex-direction: column;
 }
 
-.cardWrap {
-  height: 70px;
-  width: 100%;
+.nameWrap {
+  height: 50px;
+  width: 200px;
   max-width: 350px;
   border-radius: 8px;
   display: flex;
@@ -19,12 +19,6 @@
   backdrop-filter: blur(3px);
   padding: 0 10px;
   margin: 15px 0;
-}
-
-.nameWrap {
-  @extend .cardWrap;
-  height: 50px;
-  width: 200px;
   font-size: 25px;
 }
 
@@ -60,7 +54,7 @@
 
 .smIcon {
   width: 30px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .input {

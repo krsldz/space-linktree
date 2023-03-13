@@ -1,10 +1,5 @@
 import React, { type FC, memo } from 'react';
-import styles from './AdditionalBlock.module.scss';
+import CardLayout from '../../ui/CardLayout/CardLayout';
 
-const AdditionalBlock: FC = () => (
-  <>
-    <div className={styles.wrap}>Addtional Block</div>
-    <div className={styles.wrap}>+</div>
-  </>
-);
+const AdditionalBlock: FC = () => <CardLayout>Addtional Block</CardLayout>;
 export default memo(AdditionalBlock);

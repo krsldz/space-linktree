@@ -1,6 +1,8 @@
 .wrap {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .img {
@@ -29,4 +31,17 @@
   align-items: center;
   border-radius: 8px;
   font-weight: 600;
+}
+
+.iconWrap {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.settingsIcon {
+  width: 25px;
+  path {
+    stroke: white;
+  }
 }
