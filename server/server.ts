@@ -1,8 +1,8 @@
 import express from 'express';
 import MongoStore from 'connect-mongo';
 import * as dotenv from 'dotenv';
+import { connectToDatabase } from './routers/database/config';
 // dotenv.config()
-
 
 // const session = require('express-session');
   
