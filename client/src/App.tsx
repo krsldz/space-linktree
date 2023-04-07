@@ -6,7 +6,7 @@ import SettingsPage from './components/SettingsPage/SettingsPage';
 
 const App: FC = () => (
   <div className={styles.app}>
-    <SettingsPage />
+    <AuthPage />
   </div>
 );
 
