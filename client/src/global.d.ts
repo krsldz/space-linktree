@@ -1,12 +1,12 @@
 declare module '*.scss' {
-	type ClassNames = Record<string, string>;
-	const classNames: ClassNames;
-	export = classNames;
+  type ClassNames = Record<string, string>;
+  const classNames: ClassNames;
+  export = classNames;
 }
 
 declare module '*.png' {
-	const value: never;
-	export default value;
+  const value: never;
+  export default value;
 }
 declare module '*.svg' {
   import React = require('react');
@@ -15,3 +15,9 @@ declare module '*.svg' {
   const src: string;
   export default src;
 }
+
+declare type DefaultState<T, K = string> = {
+  data: T;
+  loading: boolean;
+  error: K | null;
+};
