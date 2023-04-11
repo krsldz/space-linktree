@@ -1,9 +1,11 @@
 import express from 'express';
-import auth from "./routers/auth";
-import { connectToDatabase } from './routers/database/config';
-import './routers/passport';
+import passport from "passport";
+import cookieSession from "cookie-session";
 
-// const session = require('express-session');
+import auth from "./routers/auth";
+import './routers/passport';
+import { connectToDB } from './database/connect';
+import { COOKIE_KEY } from './utils/secret';
   
 const app = express();
 const PORT:Number=8080;
@@ -12,9 +14,18 @@ app.get('/', (req, res) => {
     res.send('Welcome to typescript backend!');
 })
 
-connectToDatabase();
+app.use(
+    cookieSession({
+      maxAge: 24 * 60 * 60 * 1000,
+      keys: [COOKIE_KEY || ''],
+    })
+  );
   
-// Server setup
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+connectToDB();
+
 app.listen(PORT,() => {
     console.log('The application is listening '
           + 'on port http://localhost:'+PORT);

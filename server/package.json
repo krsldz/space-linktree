@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon server.ts",
+    "dev": "nodemon src/server.ts",
     "build": "tsc -p ."
   },
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/cookie-session": "^2.0.44",
     "bcrypt": "^5.1.0",
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.3",
@@ -21,7 +22,7 @@
     "express-session": "^1.17.3",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
-    "passport": "^0.6.0",
+    "passport": "^0.5.0",
     "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {

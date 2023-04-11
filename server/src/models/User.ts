@@ -14,6 +14,6 @@ const userSchema = new Schema<UserDocument>({
   googleId: String,
 });
 
-const User = mongoose.model<UserDocument>("User", userSchema);
+const User = mongoose.model<UserDocument>('users', userSchema);
 
 export default User;
