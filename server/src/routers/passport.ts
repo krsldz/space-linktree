@@ -1,6 +1,8 @@
 import passport from "passport";
 import passportGoogle from "passport-google-oauth20";
-import User from './database/UserModal/User';
+
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '../utils/secret';
+import User from '../models/User';
 
 const GoogleStrategy = passportGoogle.Strategy;
 
@@ -16,12 +18,12 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: '562682057352-i161ldv4cl8qoei5brr2e97ccqqqmo42.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientID: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/redirect',
     },
     async (accessToken, refreshToken, profile, done) => {
-      const user = await User.findOne({ googleId: profile.id });
+      const user = await User.findOne({ googleId: profile.id }); 
       if (!user) {
         const newUser = await User.create({
           googleId: profile.id,

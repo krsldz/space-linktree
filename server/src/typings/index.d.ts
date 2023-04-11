@@ -1,4 +1,4 @@
-import { UserDocument } from "../routers/database/UserModal/User";
+import { UserDocument } from "../models/User";
 
 declare global {
   namespace Express {
