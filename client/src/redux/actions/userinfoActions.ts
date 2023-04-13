@@ -1,5 +1,5 @@
 import { AppThunk, Dispatch } from '../types';
-// import { fetchUserInfo } from '../../api';
+import { fetchUserInfo } from '../../api/user';
 import {
   getUserInfoFulfilled,
   getUserInfoPending,
@@ -11,8 +11,8 @@ export const getUserInfo =
   async (dispatch: Dispatch): Promise<void> => {
     try {
       dispatch(getUserInfoPending());
-      // const user = fetchUserInfo();
-      // dispatch(getUserInfoFulfilled(user));
+      const user = await fetchUserInfo();
+      dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
       // TO DO
       dispatch(getUserInfoRejected(''));
