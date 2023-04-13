@@ -21,9 +21,11 @@ passport.use(
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/redirect',
+      passReqToCallback   : true
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (req, accessToken, refreshToken, profile, done) => {
       const user = await User.findOne({ googleId: profile.id }); 
+      req.session = {};
       if (!user) {
         const newUser = await User.create({
           googleId: profile.id,
@@ -31,9 +33,17 @@ passport.use(
           email: profile.emails?.[0].value,
         });
         if (newUser) {
+          req.session.user = {
+            id: newUser._id,
+            name: newUser.name,
+          }
           done(null, newUser);
         }
       } else {
+        req.session.user = {
+          id: user._id,
+          name: user.name,
+        }
         done(null, user);
       }
     }

@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from "passport";
 import cookieSession from "cookie-session";
+import cors from 'cors';
 
 import auth from "./routers/auth";
 import './routers/passport';
@@ -23,6 +24,11 @@ app.use(
   
   app.use(passport.initialize());
   app.use(passport.session());
+
+  app.use(cors({
+    origin: true,
+    credentials: true,
+  }));
 
 connectToDB();
 

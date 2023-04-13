@@ -5,15 +5,15 @@ import AdditionalBlock from '../AdditionalBlock/AdditionalBlock';
 import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 
-const BasicInfo: FC = () => (
+const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => (
   <div className={styles.wrap}>
-    <div className={styles.nameWrap}>Kris Eldzarova</div>
+    <div className={styles.nameWrap}>{user.name}</div>
     <img alt="avatar pic" className={styles.avatar} src={avatar} />
     <div className={styles.basicBlockwrap}>
       <CardLayout>
         <div className={styles.emailInput}>
           <SvgIcon className={styles.icon} iconName="Email" />
-          kris.eldzarova@gmail.com
+          {user.email}
         </div>
       </CardLayout>
       <CardLayout>
