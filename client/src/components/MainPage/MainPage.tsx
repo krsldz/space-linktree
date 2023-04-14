@@ -18,10 +18,8 @@ const MainPage: FC = () => {
 
   return (
     <div className={styles.wrap}>
-      <Link to="/profile/settings">
-        <div className={styles.iconWrap}>
-          <SvgIcon className={styles.settingsIcon} iconName="Settings" />
-        </div>
+      <Link className={styles.settingsWrap} to="/profile/settings">
+        <span className={styles.settingsBtn}>Settings</span>
       </Link>
       <BasicInfo user={user.data} />
     </div>
