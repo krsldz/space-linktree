@@ -1,6 +1,7 @@
 @import 'src/styles/mixins/index.scss';
 
 $yellow: #ffeb99;
+$red: #e8998d;
 
 
 .wrap {
@@ -38,10 +39,10 @@ $yellow: #ffeb99;
   font-weight: 600;
 }
 
-.settingsWrap {
+.settingsWrap, .logOutWrap {
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
+  padding: 0px 10px;
   text-decoration: none !important;
 }
 
@@ -49,4 +50,11 @@ $yellow: #ffeb99;
   @include button($yellow, .6em, .5em);
   color: black;
   font-size: 12px !important;
+  margin: 15px 10px !important;
+}
+
+.logOutBtn {
+  @include button($red, .6em, .5em);
+  font-size: 12px !important;
+  margin: 0px 10px !important;
 }

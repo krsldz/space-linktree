@@ -1,14 +1,14 @@
 import React, { type FC, memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 
 import styles from './SettingsPage.module.scss';
 
 const SettingsPage: FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onCancel = () => {
-    history.push('/profile/edit');
+    navigate('/profile/edit');
   };
 
   return (
@@ -56,43 +56,63 @@ const SettingsPage: FC = () => {
         <div className={styles.sectionWrap}>
           <h3 className={styles.title}>Social media links...</h3>
           <CardLayout>
-            <span className={styles.infoTitle}>LinkedIn</span>
-            <input />
+            <input className={styles.input} id="linkedin" placeholder="LinkedIn" />
+            <label className={styles.infoTitle} htmlFor="linkedin">
+              LinkedIn
+            </label>
           </CardLayout>
           <CardLayout>
-            <span className={styles.infoTitle}>Github</span>
-            <input />
+            <input className={styles.input} id="github" placeholder="Github" />
+            <label className={styles.infoTitle} htmlFor="github">
+              Github
+            </label>
           </CardLayout>
           {/* <CardLayout>
           <span className={styles.infoTitle}>Behance</span>
           <input />
         </CardLayout> */}
           <CardLayout>
-            <span className={styles.infoTitle}>Facebook</span>
-            <input />
+            <input className={styles.input} id="facebook" placeholder="Facebook" />
+            <label className={styles.infoTitle} htmlFor="facebook">
+              Facebook
+            </label>
           </CardLayout>
           <CardLayout>
-            <span className={styles.infoTitle}>Instagram</span>
-            <input />
+            <input className={styles.input} id="instagram" placeholder="Instagram" />
+            <label className={styles.infoTitle} htmlFor="instagram">
+              Instagram
+            </label>
           </CardLayout>
           <CardLayout>
-            <span className={styles.infoTitle}>Tiktok</span>
-            <input />
+            <input className={styles.input} id="tiktok" placeholder="Tiktok" />
+            <label className={styles.infoTitle} htmlFor="tiktok">
+              Tiktok
+            </label>
           </CardLayout>
           <CardLayout>
-            <span className={styles.infoTitle}>Spotify</span>
-            <input />
+            <input className={styles.input} id="spotify" placeholder="Spotify" />
+            <label className={styles.infoTitle} htmlFor="spotify">
+              Spotify
+            </label>
           </CardLayout>
           <CardLayout>
-            <span className={styles.infoTitle}>Youtube</span>
-            <input />
+            <input className={styles.input} id="youtube" placeholder="Youtube" />
+            <label className={styles.infoTitle} htmlFor="youtube">
+              Youtube
+            </label>
           </CardLayout>
         </div>
         <div className={styles.sectionWrap}>
           <h3 className={styles.title}>Additional...</h3>
           <CardLayout>
-            <span className={styles.infoTitle}>Your Link</span>
-            <input />
+            <input className={styles.input} id="link" placeholder="Your Link" />
+            <label className={styles.infoTitle} htmlFor="link">
+              Your Link
+            </label>
+            {/* <input className={styles.input} id="title" placeholder="Title" />
+            <label className={styles.infoTitle} htmlFor="title">
+              Title
+            </label> */}
           </CardLayout>
         </div>
       </div>

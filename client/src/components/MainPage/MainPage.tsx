@@ -1,26 +1,34 @@
 import React, { type FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getUserInfo } from '../../redux/actions/userinfoActions';
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserInfo, getUserLogOut } from '../../redux/actions/userinfoActions';
 import { RootState } from '../../redux/types';
 import { useDispatch } from '../../redux/utils';
-import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import BasicInfo from '../BasicInfo/BasicInfo';
 import styles from './MainPage.module.scss';
 
 const MainPage: FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.userInfo);
 
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
 
+  const onLogOut = () => {
+    dispatch(getUserLogOut());
+    navigate('/');
+  };
+
   return (
     <div className={styles.wrap}>
       <Link className={styles.settingsWrap} to="/profile/settings">
         <span className={styles.settingsBtn}>Settings</span>
       </Link>
+      <div className={styles.logOutWrap} onClick={onLogOut}>
+        <span className={styles.logOutBtn}>Log out</span>
+      </div>
       <BasicInfo user={user.data} />
     </div>
   );

@@ -2,7 +2,9 @@
   box-sizing: border-box;
     appearance: none;
     background-color: transparent;
+    backdrop-filter: blur(3px);
     border-radius: 0.6em;
+    border: none;
     cursor: pointer;
     display: flex;
     align-self: center;

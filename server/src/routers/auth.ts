@@ -25,4 +25,15 @@ router.get('/user', async (req, res) => {
   res.json({ email: currentUser?.email, name: currentUser?.name });
   });
 
+  router.get('/logout', async (req, res) => {
+    
+    if (req.session) {
+      req.session = null;
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+      res.redirect('/error');
+    }
+  });
+
 export default router;
