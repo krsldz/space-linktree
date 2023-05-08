@@ -5,6 +5,7 @@ import styles from './App.module.scss';
 import AuthPage from './components/AuthPage/AuthPage';
 import MainPage from './components/MainPage/MainPage';
 import SettingsPage from './components/SettingsPage/SettingsPage';
+import ErrorModal from './components/ErrorModal/ErrorModal';
 import { store } from './redux/store/configureStore';
 
 const App: FC = () => (
@@ -16,6 +17,7 @@ const App: FC = () => (
           <Route element={<MainPage />} path="/profile/edit" />
           <Route element={<SettingsPage />} path="/profile/settings" />
         </Routes>
+        <ErrorModal />
       </Provider>
     </BrowserRouter>
   </div>

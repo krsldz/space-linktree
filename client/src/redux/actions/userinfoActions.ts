@@ -5,6 +5,7 @@ import {
   getUserInfoPending,
   getUserInfoRejected,
 } from '../reducers/userInfoReducer';
+import { ErrorType, setError } from '../reducers/error';
 
 export const getUserInfo =
   (): AppThunk =>
@@ -14,8 +15,8 @@ export const getUserInfo =
       const user = await fetchUserInfo();
       dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
-      // TO DO
-      dispatch(getUserInfoRejected(''));
+      dispatch(getUserInfoRejected((err as ErrorType).errorText));
+      dispatch(setError(err as ErrorType));
     }
   };
 
@@ -28,7 +29,7 @@ export const getUserLogOut =
       const res = await userLogOut();
       // dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
-      // TO DO
-      // dispatch(getUserInfoRejected(''));
+      dispatch(getUserInfoRejected((err as ErrorType).errorText));
+      dispatch(setError(err as ErrorType));
     }
   };

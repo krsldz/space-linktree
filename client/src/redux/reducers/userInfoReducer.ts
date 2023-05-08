@@ -31,7 +31,7 @@ export const userInfoSlice = createSlice({
     getUserInfoPending(state): DefaultState<User> {
       return { ...state, error: null, loading: true };
     },
-    getUserInfoRejected(state, action: PayloadAction<string>): DefaultState<User> {
+    getUserInfoRejected(state, action: PayloadAction<string | null>): DefaultState<User> {
       return { ...state, error: action.payload, loading: false };
     },
   },

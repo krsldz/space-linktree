@@ -1,23 +1,51 @@
 import React, { type FC, memo } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { editProfileData } from '../../redux/actions/profileDataActions';
+import { ProfileData } from '../../redux/reducers/profileDataReducer';
+import { RootState } from '../../redux/types';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 
 import styles from './SettingsPage.module.scss';
 
 const SettingsPage: FC = () => {
+  const { data } = useSelector((state: RootState) => state.profileData);
+  const {
+    name,
+    email,
+    whatsapp,
+    spotify,
+    telegram,
+    link,
+    linkedin,
+    facebook,
+    instagram,
+    youtube,
+  } = data;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onCancel = () => {
     navigate('/profile/edit');
   };
 
+  const onSubmit = (profileData: ProfileData) => {
+    // dispatch(editProfileData(profileData));
+  };
+
   return (
-    <>
+    <form autoComplete="off" noValidate>
       <div className={styles.wrap}>
         <div className={styles.sectionWrap}>
           <h3 className={styles.title}>Basic information...</h3>
           <CardLayout>
-            <input className={styles.input} id="name" placeholder="Name" />
+            <input
+              className={styles.input}
+              defaultValue={name}
+              id="name"
+              placeholder="Name"
+            />
             <label className={styles.infoTitle} htmlFor="name">
               Name
             </label>
@@ -117,12 +145,14 @@ const SettingsPage: FC = () => {
         </div>
       </div>
       <div className={styles.buttonBlock}>
-        <button className={styles.applyBtn}>Apply</button>
+        <button className={styles.applyBtn} type="submit">
+          Apply
+        </button>
         <button className={styles.cancelBtn} onClick={onCancel}>
           Cancel
         </button>
       </div>
-    </>
+    </form>
   );
 };
 export default memo(SettingsPage);
