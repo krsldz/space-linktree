@@ -1,10 +1,11 @@
 import { AppThunk, Dispatch } from '../types';
-import { fetchUserInfo } from '../../api/user';
+import { fetchUserInfo, userLogOut } from '../../api/user';
 import {
   getUserInfoFulfilled,
   getUserInfoPending,
   getUserInfoRejected,
 } from '../reducers/userInfoReducer';
+import { ErrorType, setError } from '../reducers/error';
 
 export const getUserInfo =
   (): AppThunk =>
@@ -14,7 +15,21 @@ export const getUserInfo =
       const user = await fetchUserInfo();
       dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
+      dispatch(getUserInfoRejected((err as ErrorType).errorText));
+      dispatch(setError(err as ErrorType));
+    }
+  };
+
+export const getUserLogOut =
+  (): AppThunk =>
+  async (dispatch: Dispatch): Promise<void> => {
+    try {
       // TO DO
-      dispatch(getUserInfoRejected(''));
+      // dispatch(getUserInfoPending());
+      const res = await userLogOut();
+      // dispatch(getUserInfoFulfilled(user));
+    } catch (err: unknown) {
+      dispatch(getUserInfoRejected((err as ErrorType).errorText));
+      dispatch(setError(err as ErrorType));
     }
   };

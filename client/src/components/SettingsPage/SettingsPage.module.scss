@@ -1,12 +1,120 @@
+@import 'src/styles/mixins/index.scss';
+
+$green: #6c9a8b;
+$red: #e8998d;
+$yellow: #ffeb99;
+
+
 .wrap {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
+.title {
+  margin: 20px !important;
+}
+
 .buttonBlock {
   display: flex;
+  justify-content: center;
+  
   button+button {
     margin-left: 10px;
   }
+}
+
+.applyBtn {
+  @include button($green, 2.8em, 1.2em);
+}
+
+.cancelBtn {
+  @include button($red, 2.8em, 1.2em);
+}
+
+.title {
+  color: white;
+  font-family: 'ZapusSansRegular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  overflow: hidden;
+  border-right: .10em solid yellow;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .20em;
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: yellow; }
+}
+
+@media(max-width: 960px) {
+  .wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sectionWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .infoTitle {
+    font-size: 16px;
+  }
+}
+
+.input {
+  color: #333;
+  font-size: 1rem;
+  font-family: 'ZapusSansRegular';
+  letter-spacing: .20em;
+	margin: 0 auto;
+  padding: .5rem 1.5rem;
+  border-radius: 0.6rem;
+  background-color: rgba(215, 215, 215, 0.5);
+  border: none;
+  width: 90%;
+  display: block;
+  backdrop-filter: blur(3px);
+  transition: all 0.3s;
+  &:hover,
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    box-shadow: 0 0 10px 0 $yellow inset, 0 0 10px 4px $yellow;
+  }
+}
+
+.infoTitle {
+  font-family: 'ZapusSansRegular';
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .20em;
+  margin-right: 15px;
+
+  margin-left: 2rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.input:placeholder-shown + .infoTitle {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
 }

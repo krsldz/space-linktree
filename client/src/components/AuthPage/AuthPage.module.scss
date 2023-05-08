@@ -1,3 +1,17 @@
+@import 'src/styles/mixins/index.scss';
+
+$yellow: #ffeb99;
+$green: #6c9a8b;
+
+body {
+  font-family: 'ZapusSansRegular';
+  font-weight: normal;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: .05em;
+}
+
 .wrap {
   display: flex;
   flex-direction: column;
@@ -32,24 +46,13 @@
   50% { border-color: yellow; }
 }
 
+.link {
+  text-decoration: none;
+}
+
 .btn {
+@include button($green, 5rem, 3rem);
   margin-top: 170px;
-  font-family: 'ZapusSansRegular';
-  font-weight: normal;
-  font-style: normal;
-  color: white;
-  font-size: 20px;
-  height: 70px;
-  width: 300px;
-  border-radius: 8px;
-  border: none;
-  background-color: rgba(240, 240, 240, 0.5);
-  backdrop-filter: blur(3px);
-  &:hover {
-    background-color: white;
-    cursor: pointer;
-    color: black;
-  }
 }
 
 

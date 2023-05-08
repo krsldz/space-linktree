@@ -28,9 +28,12 @@ app.use(
   app.use(cors({
     origin: true,
     credentials: true,
+    optionsSuccessStatus: 200,
   }));
+  
+  
+  connectToDB();
 
-connectToDB();
 
 app.listen(PORT,() => {
     console.log('The application is listening '

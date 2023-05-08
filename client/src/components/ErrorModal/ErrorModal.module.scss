@@ -1,0 +1,21 @@
+@import 'src/styles/mixins/index.scss';
+
+$red: #e8998d;
+
+.wrap {
+  position: fixed;
+  z-index: 10;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6em;
+  backdrop-filter: blur(8px);
+}
+
+.btn {
+  @include button($red, 1rem, 4rem);
+}
