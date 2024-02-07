@@ -1,51 +1,77 @@
-import React, { type FC, memo } from 'react';
+import React, { type FC, memo, useEffect } from 'react';
 import avatar from '../../ui/images/avatar.png';
-import styles from './BasicInfo.module.scss';
-import AdditionalBlock from '../AdditionalBlock/AdditionalBlock';
 import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import CardLayout from '../../ui/CardLayout/CardLayout';
+import { useDispatch, useSelector } from '../../redux/utils';
+import { getProfileData } from '../../redux/actions/profileDataActions';
+import { RootState } from '../../redux/types';
+import styles from './BasicInfo.module.scss';
 
-const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => (
-  <div className={styles.wrap}>
-    <div className={styles.nameWrap}>{user.name}</div>
-    <img alt="avatar pic" className={styles.avatar} src={avatar} />
-    <div className={styles.basicBlockwrap}>
+const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => {
+  const dispatch = useDispatch();
+  const {
+    data: {
+      name,
+      email,
+      link,
+      linkedin,
+      whatsapp,
+      telegram,
+      tiktok,
+      youtube,
+      spotify,
+      behance,
+      facebook,
+      github,
+      instagram,
+    },
+  } = useSelector((state: RootState) => state.profileData);
+
+  useEffect(() => {
+    dispatch(getProfileData());
+  }, []);
+
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.nameWrap}>{name}</div>
+      <img alt="avatar pic" className={styles.avatar} src={avatar} />
+      <div className={styles.basicBlockwrap}>
+        <CardLayout>
+          <div className={styles.emailInput}>
+            <SvgIcon className={styles.icon} iconName="Email" />
+            {email}
+          </div>
+        </CardLayout>
+        <CardLayout>
+          <SvgIcon className={styles.smIcon} iconName="Linkedin" />
+          <SvgIcon className={styles.smIcon} iconName="Github" />
+          <SvgIcon className={styles.smIcon} iconName="Behance" />
+        </CardLayout>
+      </div>
       <CardLayout>
-        <div className={styles.emailInput}>
-          <SvgIcon className={styles.icon} iconName="Email" />
-          {user.email}
-        </div>
+        <span className={styles.input}>
+          <SvgIcon className={styles.icon} iconName="Link" />
+          {link}
+        </span>
       </CardLayout>
       <CardLayout>
-        <SvgIcon className={styles.smIcon} iconName="Linkedin" />
-        <SvgIcon className={styles.smIcon} iconName="Github" />
-        <SvgIcon className={styles.smIcon} iconName="Behance" />
+        <span className={styles.input}>
+          <SvgIcon className={styles.smIcon} iconName="Whatsapp" />
+          {whatsapp}
+        </span>
+        <span className={styles.input}>
+          <SvgIcon className={styles.smIcon} iconName="Telegram" />
+          {telegram}
+        </span>
+      </CardLayout>
+      <CardLayout>
+        <SvgIcon className={styles.smIcon} iconName="Facebook" />
+        <SvgIcon className={styles.smIcon} iconName="Instagram" />
+        <SvgIcon className={styles.smIcon} iconName="Tiktok" />
+        <SvgIcon className={styles.smIcon} iconName="Spotify" />
+        <SvgIcon className={styles.smIcon} iconName="Youtube" />
       </CardLayout>
     </div>
-    <CardLayout>
-      <span className={styles.input}>
-        <SvgIcon className={styles.icon} iconName="Link" />
-        kriseldzarova-website.com
-      </span>
-    </CardLayout>
-    <CardLayout>
-      <span className={styles.input}>
-        <SvgIcon className={styles.smIcon} iconName="Whatsapp" />
-        +79251464191
-      </span>
-      <span className={styles.input}>
-        <SvgIcon className={styles.smIcon} iconName="Telegram" />
-        @krsldz
-      </span>
-    </CardLayout>
-    <CardLayout>
-      <SvgIcon className={styles.smIcon} iconName="Facebook" />
-      <SvgIcon className={styles.smIcon} iconName="Instagram" />
-      <SvgIcon className={styles.smIcon} iconName="Tiktok" />
-      <SvgIcon className={styles.smIcon} iconName="Spotify" />
-      <SvgIcon className={styles.smIcon} iconName="Youtube" />
-    </CardLayout>
-    <AdditionalBlock />
-  </div>
-);
+  );
+};
 export default memo(BasicInfo);

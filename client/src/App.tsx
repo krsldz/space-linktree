@@ -5,6 +5,7 @@ import { store } from './redux/store/configureStore';
 import AuthPage from './components/AuthPage/AuthPage';
 import MainPage from './components/MainPage/MainPage';
 import SettingsPage from './components/SettingsPage/SettingsPage';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import ErrorModal from './components/ErrorModal/ErrorModal';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 
@@ -32,6 +33,7 @@ const App: FC = () => (
             }
             path="/profile/settings"
           />
+          <Route element={<NotFoundPage />} path="*" />
         </Routes>
         <ErrorModal />
       </Provider>
