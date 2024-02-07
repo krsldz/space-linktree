@@ -18,15 +18,6 @@ router.route('/').get(async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-}).post(async (req, res) => {
-  try {
-    const newData = await ProfileData.create({ ...req.body, user_id: 2 });
-    if (newData) {
-      res.status(201).json(newData);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 }).put(async (req, res) => {
   const userId = req.session?.user?.id;
   const { data, id } = req.body;
