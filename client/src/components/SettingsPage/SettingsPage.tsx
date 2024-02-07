@@ -1,13 +1,13 @@
-import React, { type FC, memo } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { type FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editProfileData } from '../../redux/actions/profileDataActions';
+import { editProfileData, getProfileData } from '../../redux/actions/profileDataActions';
 import { ProfileData } from '../../redux/reducers/profileDataReducer';
 import { RootState } from '../../redux/types';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 
 import styles from './SettingsPage.module.scss';
+import { useDispatch } from '../../redux/utils';
 
 const SettingsPage: FC = () => {
   const { data } = useSelector((state: RootState) => state.profileData);
@@ -26,8 +26,12 @@ const SettingsPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getProfileData());
+  }, []);
+
   const onCancel = () => {
-    navigate('/profile/edit');
+    navigate('/profile');
   };
 
   const onSubmit = (profileData: ProfileData) => {

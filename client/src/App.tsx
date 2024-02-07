@@ -22,7 +22,7 @@ const App: FC = () => (
                 <MainPage />
               </PrivateRouter>
             }
-            path="/profile/edit"
+            path="/profile"
           />
           <Route
             element={

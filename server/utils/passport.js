@@ -1,8 +1,8 @@
 const passport = require('passport');
 const passportGoogle = require('passport-google-oauth20');
-
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('../utils/secret');
 const { User } = require('../db/models/index');
+
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('./secret');
 
 const GoogleStrategy = passportGoogle.Strategy;
 
@@ -10,9 +10,9 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser(async (id, done) => {
-  const user = await User.findByPk(+id);
-  done(null, user);
+passport.deserializeUser(async (user, done) => {
+  const userData = await User.findOne({ where: { googleId: user.googleId } }, { raw: true });
+  done(null, userData.dataValues);
 });
 
 passport.use(
@@ -20,13 +20,13 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: '/auth/google/redirect',
+      callbackURL: 'http://localhost:8080/auth/google/callback',
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
-      const user = await User.findOne({ googleId: profile.id });
+      const user = await User.findOne({ where: { googleId: profile.id } }, { raw: true });
       req.session = {};
-      if (!user) {
+      if (!user.dataValues) {
         const newUser = await User.create({
           googleId: profile.id,
           name: profile.displayName,
@@ -41,10 +41,10 @@ passport.use(
         }
       } else {
         req.session.user = {
-          id: user.id,
-          name: user.name,
+          id: user.dataValues.id,
+          name: user.dataValues.name,
         };
-        done(null, user);
+        done(null, user.dataValues);
       }
     },
   ),

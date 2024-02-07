@@ -18,7 +18,7 @@ const MainPage: FC = () => {
 
   const onLogOut = () => {
     dispatch(getUserLogOut());
-    navigate('/');
+    // navigate('/');
   };
 
   return (
