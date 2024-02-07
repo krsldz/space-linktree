@@ -27,6 +27,9 @@ export const getUserLogOut =
       // TO DO
       // dispatch(getUserInfoPending());
       const res = await userLogOut();
+      if (res === 'OK') {
+        window.location.href = '/';
+      }
       // dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
       dispatch(getUserInfoRejected((err as ErrorType).errorText));

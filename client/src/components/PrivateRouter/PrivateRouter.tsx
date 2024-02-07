@@ -1,7 +1,7 @@
-import React, { type FC, memo, ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import React, { type FC, memo, ReactElement, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { RootState } from '../../redux/types';
+import { useSelector } from '../../redux/utils';
 
 const PrivateRouter: FC<{ children: ReactElement }> = ({ children }) => {
   const { data } = useSelector((state: RootState) => state.userInfo);

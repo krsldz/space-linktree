@@ -2,7 +2,7 @@ import axios from 'axios';
 import { User } from '../redux/reducers/userInfoReducer';
 
 export const fetchUserInfo = async (): Promise<User> => {
-  const { data } = await axios.get('http://localhost:8080/auth/user', {
+  const { data } = await axios.get('http://localhost:8080/user', {
     withCredentials: true,
   });
   return data;
