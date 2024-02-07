@@ -1,7 +1,8 @@
 const passport = require('passport');
 const passportGoogle = require('passport-google-oauth20');
-const { User } = require('../db/models/index');
+const { User, ProfileData } = require('../db/models/index');
 
+const defaultProfileDataValues = require('../constants/profileData');
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('./secret');
 
 const GoogleStrategy = passportGoogle.Strategy;
@@ -26,18 +27,28 @@ passport.use(
     async (req, accessToken, refreshToken, profile, done) => {
       const user = await User.findOne({ where: { googleId: profile.id } }, { raw: true });
       req.session = {};
-      if (!user.dataValues) {
+      if (!user) {
         const newUser = await User.create({
           googleId: profile.id,
           name: profile.displayName,
           email: profile.emails?.[0].value,
         });
         if (newUser) {
-          req.session.user = {
-            id: newUser.id,
-            name: newUser.name,
-          };
-          done(null, newUser);
+          const userProfile = await ProfileData.create(
+            {
+              ...defaultProfileDataValues,
+              name: newUser.name,
+              email: newUser.email,
+              user_id: newUser.id,
+            },
+          );
+          if (userProfile) {
+            req.session.user = {
+              id: newUser.id,
+              name: newUser.name,
+            };
+            done(null, newUser);
+          }
         }
       } else {
         req.session.user = {
