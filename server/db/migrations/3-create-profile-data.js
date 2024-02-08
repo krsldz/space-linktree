@@ -68,6 +68,15 @@ module.exports = {
           underscored: true,
         },
       },
+      public_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'PublicLinks',
+          key: 'id',
+          underscored: true,
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
