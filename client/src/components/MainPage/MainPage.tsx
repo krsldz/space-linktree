@@ -25,6 +25,9 @@ const MainPage: FC = () => {
       <div className={styles.logOutWrap} onClick={onLogOut}>
         <span className={styles.logOutBtn}>Log out</span>
       </div>
+      <div className={styles.publicLinkWrap}>
+        <span className={styles.publicLink}>Get Public Link</span>
+      </div>
       <BasicInfo user={user.data} />
     </div>
   );
