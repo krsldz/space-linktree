@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (user, done) => {
   const userData = await User.findOne({ where: { googleId: user.googleId } }, { raw: true });
-  done(null, userData.dataValues);
+  done(null, userData?.dataValues);
 });
 
 passport.use(

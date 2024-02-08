@@ -12,51 +12,51 @@ module.exports = {
         type: Sequelize.STRING,
       },
       email: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       linkedin: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       github: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       behance: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       link: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       whatsapp: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       telegram: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       facebook: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       instagram: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       tiktok: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       spotify: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       youtube: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
       },
       user_id: {

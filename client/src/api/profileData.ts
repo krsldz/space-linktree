@@ -8,7 +8,10 @@ export const fetchProfileData = async (): Promise<ProfileData> => {
   return data;
 };
 
-export const fetchEditProfileData = async (profileData: ProfileData): Promise<string> => {
+export const fetchEditProfileData = async (profileData: {
+  data: ProfileData;
+  id: number;
+}): Promise<string> => {
   const { data } = await axios.put('http://localhost:8080/profile', profileData, {
     withCredentials: true,
   });

@@ -1,14 +1,12 @@
-import React, { type FC, memo, useEffect } from 'react';
+import React, { type FC, memo } from 'react';
 import avatar from '../../ui/images/avatar.png';
 import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import CardLayout from '../../ui/CardLayout/CardLayout';
-import { useDispatch, useSelector } from '../../redux/utils';
-import { getProfileData } from '../../redux/actions/profileDataActions';
+import { useSelector } from '../../redux/utils';
 import { RootState } from '../../redux/types';
 import styles from './BasicInfo.module.scss';
 
 const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => {
-  const dispatch = useDispatch();
   const {
     data: {
       name,
@@ -26,10 +24,6 @@ const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => {
       instagram,
     },
   } = useSelector((state: RootState) => state.profileData);
-
-  useEffect(() => {
-    dispatch(getProfileData());
-  }, []);
 
   return (
     <div className={styles.wrap}>

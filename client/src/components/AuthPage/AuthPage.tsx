@@ -1,19 +1,13 @@
-import React, { type FC, memo, useEffect } from 'react';
+import React, { type FC, memo } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from '../../redux/utils';
+import { useSelector } from '../../redux/utils';
 import { RootState } from '../../redux/types';
-import { getUserInfo } from '../../redux/actions/userinfoActions';
 
 import styles from './AuthPage.module.scss';
 
 const AuthPage: FC = () => {
-  const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.userInfo);
   const { email: auth } = data;
-
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
 
   if (auth) return <Navigate replace to="/profile" />;
 

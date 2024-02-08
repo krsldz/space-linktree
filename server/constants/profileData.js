@@ -1,17 +1,17 @@
 const defaultProfileDataValues = {
   name: '',
   email: '',
-  linkedin: null,
-  github: null,
-  behance: null,
-  link: null,
-  whatsapp: null,
-  telegram: null,
-  facebook: null,
-  instagram: null,
-  tiktok: null,
-  spotify: null,
-  youtube: null,
+  linkedin: '',
+  github: '',
+  behance: '',
+  link: '',
+  whatsapp: '',
+  telegram: '',
+  facebook: '',
+  instagram: '',
+  tiktok: '',
+  spotify: '',
+  youtube: '',
 };
 
 module.exports = defaultProfileDataValues;
