@@ -1,7 +1,7 @@
-import React, { type FC, memo, useEffect } from 'react';
+import React, { type FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserInfo, getUserLogOut } from '../../redux/actions/userinfoActions';
+import { getUserLogOut } from '../../redux/actions/userinfoActions';
 import { RootState } from '../../redux/types';
 import { useDispatch } from '../../redux/utils';
 import BasicInfo from '../BasicInfo/BasicInfo';
@@ -11,10 +11,6 @@ const MainPage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.userInfo);
-
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
 
   const onLogOut = () => {
     dispatch(getUserLogOut());

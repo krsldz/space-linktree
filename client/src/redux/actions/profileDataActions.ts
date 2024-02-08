@@ -22,12 +22,14 @@ export const getProfileData =
   };
 
 export const editProfileData =
-  (data: ProfileData): AppThunk =>
+  (profileData: { data: ProfileData; id: number }): AppThunk =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
       // dispatch(getProfileDataSlicePending());
-      const res = await fetchEditProfileData(data);
-      // dispatch(getProfileDataSliceFulfilled(data));
+      const res = await fetchEditProfileData(profileData);
+      // console.log(res);
+
+      // dispatch(getProfileDataSliceFulfilled(res));
     } catch (err: unknown) {
       dispatch(getProfileDataSliceRejected((err as ErrorType).errorText));
       dispatch(setError(err as ErrorType));

@@ -2,35 +2,37 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type ProfileData = {
   name: string;
-  email: string | null;
-  linkedin: string | null;
-  github: string | null;
-  behance: string | null;
-  link: string | null;
-  whatsapp: string | null;
-  telegram: string | null;
-  facebook: string | null;
-  instagram: string | null;
-  tiktok: string | null;
-  spotify: string | null;
-  youtube: string | null;
+  email: string;
+  id: number;
+  linkedin: string;
+  github: string;
+  behance: string;
+  link: string;
+  whatsapp: string;
+  telegram: string;
+  facebook: string;
+  instagram: string;
+  tiktok: string;
+  spotify: string;
+  youtube: string;
 };
 
 export const progileDataInitialState: DefaultState<ProfileData> = {
   data: {
-    behance: null,
-    email: null,
-    facebook: null,
-    github: null,
-    instagram: null,
-    link: null,
-    linkedin: null,
+    behance: '',
+    email: '',
+    facebook: '',
+    github: '',
+    id: 0,
+    instagram: '',
+    link: '',
+    linkedin: '',
     name: '',
-    spotify: null,
-    telegram: null,
-    tiktok: null,
-    whatsapp: null,
-    youtube: null,
+    spotify: '',
+    telegram: '',
+    tiktok: '',
+    whatsapp: '',
+    youtube: '',
   },
   error: null,
   loading: false,
