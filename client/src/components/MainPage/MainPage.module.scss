@@ -2,6 +2,7 @@
 
 $yellow: #ffeb99;
 $red: #e8998d;
+$green: #6c9a8b;
 
 
 .wrap {
@@ -44,6 +45,16 @@ $red: #e8998d;
   justify-content: flex-end;
   padding: 0px 10px;
   text-decoration: none !important;
+  @media(max-width: 960px) {
+    flex-direction: column;
+  }
+}
+
+.publicLinkWrap {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px 0;
+  text-decoration: none !important;
 }
 
 .settingsBtn {
@@ -51,10 +62,26 @@ $red: #e8998d;
   color: black;
   font-size: 12px !important;
   margin: 15px 10px !important;
+  width: 95px;
+  text-align: center;
+  display: inline-block;
 }
 
 .logOutBtn {
   @include button($red, .6em, .5em);
   font-size: 12px !important;
   margin: 0px 10px !important;
+  width: 95px;
+  text-align: center;
+  display: inline-block;
+}
+
+.publicLink {
+  @include button($green, .6em, .5em);
+  font-size: 12px !important;
+  margin: 0px 10px !important;
+  padding: 15px;
+  width: 220px;
+  text-align: center;
+  display: inline-block;
 }
