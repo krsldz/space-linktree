@@ -1,8 +1,9 @@
 const passport = require('passport');
 const passportGoogle = require('passport-google-oauth20');
-const { User, ProfileData } = require('../db/models/index');
+const { User, ProfileData, PublicLinks } = require('../db/models/index');
 
 const defaultProfileDataValues = require('../constants/profileData');
+const { getRandomLink } = require('./getRandomLink');
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('./secret');
 
 const GoogleStrategy = passportGoogle.Strategy;
@@ -34,20 +35,29 @@ passport.use(
           email: profile.emails?.[0].value,
         });
         if (newUser) {
-          const userProfile = await ProfileData.create(
+          const userLink = await PublicLinks.create(
             {
-              ...defaultProfileDataValues,
-              name: newUser.name,
-              email: newUser.email,
-              user_id: newUser.id,
+              link: getRandomLink(newUser.name),
+              owner_id: newUser.id,
             },
           );
-          if (userProfile) {
-            req.session.user = {
-              id: newUser.id,
-              name: newUser.name,
-            };
-            done(null, newUser);
+          if (userLink) {
+            const userProfile = await ProfileData.create(
+              {
+                ...defaultProfileDataValues,
+                name: newUser.name,
+                email: newUser.email,
+                user_id: newUser.id,
+                public_id: userLink.id,
+              },
+            );
+            if (userProfile) {
+              req.session.user = {
+                id: newUser.id,
+                name: newUser.name,
+              };
+              done(null, newUser);
+            }
           }
         }
       } else {

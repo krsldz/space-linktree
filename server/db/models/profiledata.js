@@ -4,13 +4,9 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class ProfileData extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate({ User }) {
+    static associate({ User, PublicLinks }) {
       this.belongsTo(User, { foreignKey: 'user_id' });
+      this.belongsTo(PublicLinks, { foreignKey: 'public_id' });
     }
   }
   ProfileData.init({
@@ -30,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.INTEGER,
       references: 'Users',
+    },
+    public_id: {
+      type: DataTypes.INTEGER,
+      references: 'PublicLinks',
     },
   }, {
     sequelize,
