@@ -44,6 +44,10 @@ body {
   }
 }
 
+.basicBlockwrapFullWidth {
+  width: 100%;
+}
+
 @media(max-width: 960px) {
   .basicBlockwrap {
     width: 100%;
@@ -63,6 +67,7 @@ body {
 .smIcon {
   width: 30px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .input {
@@ -76,4 +81,10 @@ body {
 .emailInput {
   @extend .input;
   font-weight: 600;
+}
+
+.website {
+  color: #FFFF;
+  text-decoration: none;
+  font-weight: bolder;
 }

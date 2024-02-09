@@ -1,5 +1,9 @@
 import { ProfileData } from '../reducers/profileDataReducer';
-import { fetchEditProfileData, fetchProfileData } from '../../api/profileData';
+import {
+  fetchEditProfileData,
+  fetchProfileData,
+  fetchPublicProfile,
+} from '../../api/profileData';
 import {
   getProfileDataSliceFulfilled,
   getProfileDataSlicePending,
@@ -14,6 +18,19 @@ export const getProfileData =
     try {
       dispatch(getProfileDataSlicePending());
       const data = await fetchProfileData();
+      dispatch(getProfileDataSliceFulfilled(data));
+    } catch (err: unknown) {
+      dispatch(getProfileDataSliceRejected((err as ErrorType).errorText));
+      dispatch(setError(err as ErrorType));
+    }
+  };
+
+export const getPublicProfile =
+  (link: string): AppThunk =>
+  async (dispatch: Dispatch): Promise<void> => {
+    try {
+      dispatch(getProfileDataSlicePending());
+      const data = await fetchPublicProfile(link);
       dispatch(getProfileDataSliceFulfilled(data));
     } catch (err: unknown) {
       dispatch(getProfileDataSliceRejected((err as ErrorType).errorText));

@@ -20,31 +20,7 @@ body {
   padding: 60px;
 }
 
-.title {
-  color: white;
-  font-family: 'ZapusSansRegular';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 80px;
-  overflow: hidden;
-  border-right: .10em solid $yellow;
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: .15em;
-  animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 700px }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: $yellow; }
-}
+@include title(80px, 700px);
 
 .link {
   text-decoration: none;
