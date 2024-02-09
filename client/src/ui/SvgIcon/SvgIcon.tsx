@@ -6,6 +6,7 @@ import { IconProps } from './types';
 const SvgIcon: FC<IconProps> = ({ iconName, ...rest }) => {
   const IconMap = {
     Behance: <Icons.Behance {...rest} />,
+    Close: <Icons.Close {...rest} />,
     Email: <Icons.Email {...rest} />,
     Facebook: <Icons.Facebook {...rest} />,
     Github: <Icons.Github {...rest} />,

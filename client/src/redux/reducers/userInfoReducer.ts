@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type User = {
   name: string;
   email: string;
+  id: number;
 };
 
 export const userInfoInitialState: DefaultState<User> = {
   data: {
     email: '',
+    id: 0,
     name: '',
   },
   error: null,

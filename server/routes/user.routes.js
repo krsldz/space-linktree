@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       const currentUser = await User.findOne({ where: { id } }, { raw: true });
       if (currentUser) {
         const { dataValues: { email, name } } = currentUser;
-        return res.json({ email, name });
+        return res.json({ email, name, id });
       }
       return res.status(401).end();
     }

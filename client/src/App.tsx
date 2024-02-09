@@ -11,6 +11,7 @@ import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 import PreloadData from './components/PreloadData/PreloadData';
 
 import styles from './App.module.scss';
+import PublicLinkModal from './components/PublicLinkModal/PublicLinkModal';
 
 const App: FC = () => (
   <div className={styles.app}>
@@ -38,6 +39,7 @@ const App: FC = () => (
           <Route element={<NotFoundPage />} path="*" />
         </Routes>
         <ErrorModal />
+        <PublicLinkModal />
       </Provider>
     </BrowserRouter>
   </div>

@@ -27,7 +27,7 @@ body {
   font-style: normal;
   font-size: 80px;
   overflow: hidden;
-  border-right: .10em solid yellow;
+  border-right: .10em solid $yellow;
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: .15em;
@@ -43,7 +43,7 @@ body {
 
 @keyframes blink-caret {
   from, to { border-color: transparent; }
-  50% { border-color: yellow; }
+  50% { border-color: $yellow; }
 }
 
 .link {

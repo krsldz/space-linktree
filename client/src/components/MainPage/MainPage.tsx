@@ -1,20 +1,24 @@
 import React, { type FC, memo } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUserLogOut } from '../../redux/actions/userinfoActions';
 import { RootState } from '../../redux/types';
 import { useDispatch } from '../../redux/utils';
 import BasicInfo from '../BasicInfo/BasicInfo';
+import { getPublicLink } from '../../redux/actions/publicLinkActions';
+
 import styles from './MainPage.module.scss';
 
 const MainPage: FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.userInfo);
+  const { data: user } = useSelector((state: RootState) => state.userInfo);
+
+  const openLinkModal = () => {
+    dispatch(getPublicLink());
+  };
 
   const onLogOut = () => {
     dispatch(getUserLogOut());
-    // navigate('/');
   };
 
   return (
@@ -25,10 +29,10 @@ const MainPage: FC = () => {
       <div className={styles.logOutWrap} onClick={onLogOut}>
         <span className={styles.logOutBtn}>Log out</span>
       </div>
-      <div className={styles.publicLinkWrap}>
+      <div className={styles.publicLinkWrap} onClick={openLinkModal}>
         <span className={styles.publicLink}>Get Public Link</span>
       </div>
-      <BasicInfo user={user.data} />
+      <BasicInfo user={user} />
     </div>
   );
 };

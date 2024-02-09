@@ -1,8 +1,16 @@
-import { errorReducer, profileDataReducer, userInfoReducer } from '../reducers';
+import {
+  errorReducer,
+  profileDataReducer,
+  userInfoReducer,
+  modalReducer,
+  publicLinkReducer,
+} from '../reducers';
 
 const rootState = {
   error: errorReducer,
+  modal: modalReducer,
   profileData: profileDataReducer,
+  publicLink: publicLinkReducer,
   userInfo: userInfoReducer,
 };
 
