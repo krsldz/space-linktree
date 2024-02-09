@@ -1,12 +1,15 @@
 import React, { type FC, memo } from 'react';
+import cls from 'classnames';
+import { Link } from 'react-router-dom';
 import avatar from '../../ui/images/avatar.png';
 import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 import { useSelector } from '../../redux/utils';
 import { RootState } from '../../redux/types';
+
 import styles from './BasicInfo.module.scss';
 
-const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => {
+const BasicInfo: FC = () => {
   const {
     data: {
       name,
@@ -25,46 +28,119 @@ const BasicInfo: FC<{ user: { name: string; email: string } }> = ({ user }) => {
     },
   } = useSelector((state: RootState) => state.profileData);
 
+  const renderPortFolio = () => {
+    if (!linkedin && !behance && !github) {
+      return null;
+    }
+    return (
+      <CardLayout>
+        {linkedin && (
+          <Link target="_blank" to={linkedin}>
+            <SvgIcon className={styles.smIcon} iconName="Linkedin" />
+          </Link>
+        )}
+        {github && (
+          <Link target="_blank" to={github}>
+            <SvgIcon className={styles.smIcon} iconName="Github" />
+          </Link>
+        )}
+        {behance && (
+          <Link target="_blank" to={behance}>
+            <SvgIcon className={styles.smIcon} iconName="Behance" />
+          </Link>
+        )}
+      </CardLayout>
+    );
+  };
+
+  const renderMessengers = () => {
+    if (!whatsapp && !telegram) {
+      return null;
+    }
+    return (
+      <CardLayout>
+        {whatsapp && (
+          <span className={styles.input}>
+            <SvgIcon className={styles.smIcon} iconName="Whatsapp" />
+            {whatsapp}
+          </span>
+        )}
+        {telegram && (
+          <span className={styles.input}>
+            <SvgIcon className={styles.smIcon} iconName="Telegram" />
+            {telegram}
+          </span>
+        )}
+      </CardLayout>
+    );
+  };
+
+  const renderSocialMedia = () => {
+    if (!facebook && !instagram && !tiktok && !spotify && !youtube) {
+      return null;
+    }
+    return (
+      <CardLayout>
+        {facebook && (
+          <Link target="_blank" to={facebook}>
+            <SvgIcon className={styles.smIcon} iconName="Facebook" />
+          </Link>
+        )}
+        {instagram && (
+          <Link target="_blank" to={instagram}>
+            <SvgIcon className={styles.smIcon} iconName="Instagram" />
+          </Link>
+        )}
+        {tiktok && (
+          <Link target="_blank" to={tiktok}>
+            <SvgIcon className={styles.smIcon} iconName="Tiktok" />
+          </Link>
+        )}
+        {spotify && (
+          <Link target="_blank" to={spotify}>
+            <SvgIcon className={styles.smIcon} iconName="Spotify" />
+          </Link>
+        )}
+        {youtube && (
+          <Link target="_blank" to={youtube}>
+            <SvgIcon className={styles.smIcon} iconName="Youtube" />
+          </Link>
+        )}
+      </CardLayout>
+    );
+  };
+
   return (
     <div className={styles.wrap}>
-      <div className={styles.nameWrap}>{name}</div>
+      {name && <div className={styles.nameWrap}>{name}</div>}
       <img alt="avatar pic" className={styles.avatar} src={avatar} />
-      <div className={styles.basicBlockwrap}>
-        <CardLayout>
-          <div className={styles.emailInput}>
-            <SvgIcon className={styles.icon} iconName="Email" />
-            {email}
-          </div>
-        </CardLayout>
-        <CardLayout>
-          <SvgIcon className={styles.smIcon} iconName="Linkedin" />
-          <SvgIcon className={styles.smIcon} iconName="Github" />
-          <SvgIcon className={styles.smIcon} iconName="Behance" />
-        </CardLayout>
+      <div
+        className={cls(styles.basicBlockwrap, {
+          [styles.basicBlockwrapFullWidth]: !email,
+        })}
+      >
+        {email && (
+          <CardLayout>
+            <div className={styles.emailInput}>
+              <SvgIcon className={styles.icon} iconName="Email" />
+              {email}
+            </div>
+          </CardLayout>
+        )}
+        {renderPortFolio()}
       </div>
-      <CardLayout>
-        <span className={styles.input}>
-          <SvgIcon className={styles.icon} iconName="Link" />
-          {link}
-        </span>
-      </CardLayout>
-      <CardLayout>
-        <span className={styles.input}>
-          <SvgIcon className={styles.smIcon} iconName="Whatsapp" />
-          {whatsapp}
-        </span>
-        <span className={styles.input}>
-          <SvgIcon className={styles.smIcon} iconName="Telegram" />
-          {telegram}
-        </span>
-      </CardLayout>
-      <CardLayout>
-        <SvgIcon className={styles.smIcon} iconName="Facebook" />
-        <SvgIcon className={styles.smIcon} iconName="Instagram" />
-        <SvgIcon className={styles.smIcon} iconName="Tiktok" />
-        <SvgIcon className={styles.smIcon} iconName="Spotify" />
-        <SvgIcon className={styles.smIcon} iconName="Youtube" />
-      </CardLayout>
+      {link && (
+        <CardLayout>
+          <Link className={styles.website} target="_blank" to={link}>
+            <span className={styles.input}>
+              <SvgIcon className={styles.icon} iconName="Link" />
+              {link}
+            </span>
+          </Link>
+        </CardLayout>
+      )}
+      {renderMessengers()}
+      {renderSocialMedia()}
     </div>
   );
 };
