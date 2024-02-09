@@ -11,3 +11,4 @@ export { ReactComponent as Telegram } from './telegram.svg';
 export { ReactComponent as Tiktok } from './tiktok.svg';
 export { ReactComponent as Whatsapp } from './whatsapp.svg';
 export { ReactComponent as Youtube } from './youtube.svg';
+export { ReactComponent as Close } from './close.svg';

@@ -1,12 +1,11 @@
 const router = require('express').Router();
-const { PublicLinks, ProfileData } = require('../db/models/index');
+const { PublicLinks } = require('../db/models/index');
 
-router.route('/:id').get(async (req, res) => {
-  const { id } = req.params;
-  const userId = req.session?.user?.id;
+router.route('/').get(async (req, res) => {
+  const id = req.session?.user?.id;
   try {
-    if (userId) {
-      const userLink = await PublicLinks.findOne({ where: { id } }, { raw: true });
+    if (id) {
+      const userLink = await PublicLinks.findOne({ where: { owner_id: id } }, { raw: true });
       if (userLink) {
         const { id: linkId, link } = userLink;
         return res.status(200).json({ linkId, link });
@@ -17,7 +16,9 @@ router.route('/:id').get(async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-}).put(async (req, res) => {
+});
+
+router.route('/:id').put(async (req, res) => {
   const { id } = req.params;
   const { link } = req.body;
   const userId = req.session?.user?.id;
