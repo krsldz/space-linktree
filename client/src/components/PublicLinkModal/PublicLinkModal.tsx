@@ -10,10 +10,10 @@ import React, {
 import cls from 'classnames';
 import copy from 'copy-to-clipboard';
 import { useDispatch, useSelector } from '../../redux/utils';
-import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import { RootState } from '../../redux/types';
 import { closeModal } from '../../redux/reducers/modal';
 import { editPublicLink } from '../../redux/actions/publicLinkActions';
+import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import { useOutsideClick } from './utils';
 
 import styles from './PublicLinkModal.module.scss';

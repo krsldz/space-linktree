@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { editProfileData } from '../../redux/actions/profileDataActions';
 import { RootState } from '../../redux/types';
-import CardLayout from '../../ui/CardLayout/CardLayout';
 import { useDispatch } from '../../redux/utils';
+import CardLayout from '../../ui/CardLayout/CardLayout';
 import { initialFormValues } from './constants';
 import { ProfileFormData } from './types';
 

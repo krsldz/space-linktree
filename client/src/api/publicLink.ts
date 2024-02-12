@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { ProfileData } from '../redux/reducers/profileDataReducer';
+import { PublicLinkType } from '../redux/reducers/publicLink';
 
-export const fetchPublicLink = async (): Promise<ProfileData> => {
+export const fetchPublicLink = async (): Promise<PublicLinkType> => {
   const { data } = await axios.get('http://localhost:8080/public', {
     withCredentials: true,
   });

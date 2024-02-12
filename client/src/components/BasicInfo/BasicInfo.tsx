@@ -1,11 +1,10 @@
 import React, { type FC, memo } from 'react';
 import cls from 'classnames';
 import { Link } from 'react-router-dom';
-// import avatar from '../../ui/images/avatar.png';
-import SvgIcon from '../../ui/SvgIcon/SvgIcon';
-import CardLayout from '../../ui/CardLayout/CardLayout';
 import { useSelector } from '../../redux/utils';
 import { RootState } from '../../redux/types';
+import SvgIcon from '../../ui/SvgIcon/SvgIcon';
+import CardLayout from '../../ui/CardLayout/CardLayout';
 
 import styles from './BasicInfo.module.scss';
 
