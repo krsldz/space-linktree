@@ -15,6 +15,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      avatar: {
+        type: Sequelize.STRING,
+      },
       linkedin: {
         allowNull: false,
         type: Sequelize.STRING,

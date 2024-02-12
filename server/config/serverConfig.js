@@ -21,6 +21,8 @@ const serverConfig = (server) => {
   );
   server.use(morgan('dev'));
   server.use(express.json());
+  server.use(express.urlencoded({ extended: true }));
+  server.use(express.static('public'));
   server.use(passport.initialize());
   server.use(passport.session());
   server.use(errorHandler);

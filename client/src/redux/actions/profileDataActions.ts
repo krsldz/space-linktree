@@ -1,4 +1,3 @@
-import { ProfileData } from '../reducers/profileDataReducer';
 import {
   fetchEditProfileData,
   fetchProfileData,
@@ -11,6 +10,7 @@ import {
 } from '../reducers/profileDataReducer';
 import { AppThunk, Dispatch } from '../types';
 import { ErrorType, setError } from '../reducers/error';
+import { ProfileDataEdit } from '../../components/SettingsPage/types';
 
 export const getProfileData =
   (): AppThunk =>
@@ -39,7 +39,7 @@ export const getPublicProfile =
   };
 
 export const editProfileData =
-  (profileData: { data: ProfileData; id: number }): AppThunk =>
+  (profileData: { data: ProfileDataEdit; id: number }): AppThunk =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
       // dispatch(getProfileDataSlicePending());

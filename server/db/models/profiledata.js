@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   ProfileData.init({
     name: DataTypes.STRING,
     email: DataTypes.STRING,
+    avatar: DataTypes.STRING,
     linkedin: DataTypes.STRING,
     github: DataTypes.STRING,
     behance: DataTypes.STRING,

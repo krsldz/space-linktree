@@ -94,3 +94,20 @@ $yellow: #ffeb99;
   -webkit-transform: translateY(-4rem);
   transform: translateY(-4rem);
 }
+
+.img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.fileInput  {
+  @include button($yellow, 2.8em, 1.2em);
+  color: black;
+  font-size: 12px;
+}
+
