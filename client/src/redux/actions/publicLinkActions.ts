@@ -28,12 +28,12 @@ export const editPublicLink =
   (id: number, link: string): AppThunk =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
-      // dispatch(getProfileDataSlicePending());
+      dispatch(getPublicLinkSlicePending());
       const res = await fetchEditPublicLink(id, link);
       if (res.text === 'OK') {
         dispatch(closeModal());
       }
-      // dispatch(getProfileDataSliceFulfilled(res));
+      dispatch(getPublicLinkSliceFulfilled({ link, linkId: id }));
     } catch (err: unknown) {
       dispatch(getPublicLinkSliceRejected((err as ErrorType).errorText));
       dispatch(setError(err as ErrorType));

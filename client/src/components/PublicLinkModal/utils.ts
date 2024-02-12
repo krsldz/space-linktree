@@ -1,8 +1,17 @@
 import { RefObject, useEffect } from 'react';
 
+type Handler = (event: MouseEvent | TouchEvent) => unknown;
+
+/**
+ * A custom hook to close a modal window by clicking outside it
+ * @param {RefObject<HTMLElement> | RefObject<HTMLElement>[]} ref - element ref to catch the click
+ * @param {Handler} handler - function to be called after click catch
+ * @param {boolean} disabled - flag to disable click catch
+ * @returns {void}
+ */
 export const useOutsideClick = (
   ref: RefObject<HTMLElement> | RefObject<HTMLElement>[],
-  handler: (event: MouseEvent | TouchEvent) => unknown,
+  handler: Handler,
   disabled: boolean
 ): void => {
   const refContains = (currentRef: RefObject<HTMLElement>, target: EventTarget | null) =>

@@ -24,13 +24,10 @@ export const getUserLogOut =
   (): AppThunk =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
-      // TO DO
-      // dispatch(getUserInfoPending());
       const res = await userLogOut();
       if (res === 'OK') {
         window.location.href = '/';
       }
-      // dispatch(getUserInfoFulfilled(user));
     } catch (err: unknown) {
       dispatch(getUserInfoRejected((err as ErrorType).errorText));
       dispatch(setError(err as ErrorType));

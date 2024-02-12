@@ -1,9 +1,9 @@
 import React, { type FC, memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../redux/utils';
-import BasicInfo from '../BasicInfo/BasicInfo';
 import { getPublicProfile } from '../../redux/actions/profileDataActions';
 import { RootState } from '../../redux/types';
+import BasicInfo from '../BasicInfo/BasicInfo';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 import styles from './ProfilePage.module.scss';

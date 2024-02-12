@@ -19,7 +19,7 @@ export const fetchPublicProfile = async (link: string): Promise<ProfileData> => 
 export const fetchEditProfileData = async (profileData: {
   data: ProfileDataEdit;
   id: number;
-}): Promise<string> => {
+}): Promise<{ text: string }> => {
   const { data } = await axios.put('http://localhost:8080/profile', profileData, {
     headers: {
       'Content-Type': 'multipart/form-data',
