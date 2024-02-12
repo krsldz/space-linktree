@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type ProfileData = {
   name: string;
   email: string;
+  avatar: string;
   id: number;
   linkedin: string;
   github: string;
@@ -19,6 +20,7 @@ export type ProfileData = {
 
 export const progileDataInitialState: DefaultState<ProfileData> = {
   data: {
+    avatar: '',
     behance: '',
     email: '',
     facebook: '',

@@ -1,7 +1,7 @@
 import React, { type FC, memo } from 'react';
 import cls from 'classnames';
 import { Link } from 'react-router-dom';
-import avatar from '../../ui/images/avatar.png';
+// import avatar from '../../ui/images/avatar.png';
 import SvgIcon from '../../ui/SvgIcon/SvgIcon';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 import { useSelector } from '../../redux/utils';
@@ -14,6 +14,7 @@ const BasicInfo: FC = () => {
     data: {
       name,
       email,
+      avatar,
       link,
       linkedin,
       whatsapp,
@@ -113,7 +114,11 @@ const BasicInfo: FC = () => {
   return (
     <div className={styles.wrap}>
       {name && <div className={styles.nameWrap}>{name}</div>}
-      <img alt="avatar pic" className={styles.avatar} src={avatar} />
+      <img
+        alt="avatar pic"
+        className={styles.avatar}
+        src={`http://localhost:8080/${avatar}`}
+      />
       <div
         className={cls(styles.basicBlockwrap, {
           [styles.basicBlockwrapFullWidth]: !email,

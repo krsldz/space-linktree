@@ -1,4 +1,4 @@
-import React, { type FC, memo, useMemo } from 'react';
+import React, { type FC, memo, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
@@ -7,6 +7,7 @@ import { RootState } from '../../redux/types';
 import CardLayout from '../../ui/CardLayout/CardLayout';
 import { useDispatch } from '../../redux/utils';
 import { initialFormValues } from './constants';
+import { ProfileFormData } from './types';
 
 import styles from './SettingsPage.module.scss';
 
@@ -15,6 +16,7 @@ const SettingsPage: FC = () => {
   const { id } = data;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [file, setFile] = useState<File>();
 
   const initialValues = useMemo(() => ({ ...initialFormValues, ...data }), [data]);
 
@@ -22,11 +24,20 @@ const SettingsPage: FC = () => {
     navigate('/profile');
   };
 
+  const rebuildData = (values: ProfileFormData) => {
+    const formData = new FormData();
+    Object.keys(values).forEach((key) => {
+      formData.append(key, (values as any)[key]);
+    });
+    return Object.fromEntries(formData);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
-        dispatch(editProfileData({ data: values, id }));
+        const newData = rebuildData(values);
+        dispatch(editProfileData({ data: { ...(newData as ProfileFormData) }, id }));
         setSubmitting(false);
         navigate('/profile');
       }}
@@ -35,6 +46,7 @@ const SettingsPage: FC = () => {
         handleChange,
         handleSubmit,
         isSubmitting,
+        setFieldValue,
         values: {
           name,
           email,
@@ -128,7 +140,36 @@ const SettingsPage: FC = () => {
                   LinkedIn
                 </label>
               </CardLayout>
-              <CardLayout>Photo</CardLayout>
+              <CardLayout>
+                {file && (
+                  <img
+                    alt="preview"
+                    className={styles.img}
+                    src={URL.createObjectURL(file)}
+                  />
+                )}
+                <Field name="avatar">
+                  {(form: { setFieldValue: any }) => (
+                    <>
+                      <label className={styles.fileInput} htmlFor="avatar">
+                        Upload Photo
+                      </label>
+                      <input
+                        id="avatar"
+                        name="avatar"
+                        onChange={(event) => {
+                          if (event.currentTarget.files) {
+                            setFieldValue('avatar', event.currentTarget.files[0]);
+                            setFile(event.currentTarget.files[0]);
+                          }
+                        }}
+                        placeholder="Photo"
+                        type="file"
+                      />
+                    </>
+                  )}
+                </Field>
+              </CardLayout>
             </div>
             <div className={styles.sectionWrap}>
               <h3 className={styles.title}>Social media links...</h3>

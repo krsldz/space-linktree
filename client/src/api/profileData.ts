@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ProfileData } from '../redux/reducers/profileDataReducer';
+import { ProfileDataEdit } from '../components/SettingsPage/types';
 
 export const fetchProfileData = async (): Promise<ProfileData> => {
   const { data } = await axios.get('http://localhost:8080/profile', {
@@ -16,10 +17,13 @@ export const fetchPublicProfile = async (link: string): Promise<ProfileData> => 
 };
 
 export const fetchEditProfileData = async (profileData: {
-  data: ProfileData;
+  data: ProfileDataEdit;
   id: number;
 }): Promise<string> => {
   const { data } = await axios.put('http://localhost:8080/profile', profileData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
     withCredentials: true,
   });
   return data;
